@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import HomePage from "./HomePage";
-import NavBar from "./NavBar";
-import Resume from "./Resume";
-import Projects from "./Projects";
+import HomePage from "../HomePage";
+import NavBar from "../NavBar";
+import Resume from "../Resume";
+import Projects from "../Projects/Projects";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Layout, Header, Navigation, Drawer, Content } from "react-mdl";
-import Main from "./Main";
+import Main from "../Main";
 import styles from "./App.css";
 
 class App extends Component {
