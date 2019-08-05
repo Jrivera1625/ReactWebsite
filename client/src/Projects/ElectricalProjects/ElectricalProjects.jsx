@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from "react";
 import {
     Tabs,
@@ -12,7 +13,7 @@ import {
     IconButton,
     CardText
   } from "react-mdl";
- import styles from './App.css'
+
  import WindTurbine from './WindTurbine';
 
 class ElectricalProjects extends Component {

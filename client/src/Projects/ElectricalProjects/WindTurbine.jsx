@@ -14,6 +14,7 @@ import {
   } from "react-mdl";
  
  import Jumbotron from 'react-bootstrap/Jumbotron';
+ /* eslint-disable */
  import Container from 'react-bootstrap/Carousel';
 
 class WindTurbine extends Component {
