@@ -1,16 +1,22 @@
-import { ADD_USER } from "../actions/actions";
 
-function userDataReducer(state={users: []}, action){
-    switch(action.type) {
-        case ADD_USER:
-          return Object.assign({}, state, 
-              {
-                users: action.data
-               }); 
-         default: 
-           return state;
-     }
-}
-//Selectors
-export const getUserData= state => state.App.users?state.App.users:[  ];
-export default userDataReducer;
+export const simpleAction =(state = {}, action) => {
+  switch (action.type) {
+   case 'SIMPLE_ACTION':
+    return {
+     result: action.payload
+    }
+   default:
+    return state
+  }
+ }
+ export const simpleAction1 =(state = {}, action) => {
+  switch (action.type) {
+   case 'SIMPLE_ACTION1':
+    return {
+     otherresult: action.payload
+    }
+   default:
+    return state
+  }
+ }
+ //export 

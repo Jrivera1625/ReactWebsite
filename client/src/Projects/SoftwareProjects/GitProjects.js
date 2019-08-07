@@ -21,8 +21,10 @@ import {
 import {Form} from 'antd'
 
 //import actions 
-import {fetchUser} from '../../actions/actions';
+import {fetchUser, fetchUser1,fetchUser12} from '../../actions/actions';
  
+//import reducers/selectors
+import getUserData from '../../reducers/reducers'
 
 class GitProjects extends Component {
     constructor(props) {
@@ -32,6 +34,12 @@ class GitProjects extends Component {
     postData = ()=>{
         this.props.dispatch(fetchUser())
     }
+    postData1 = ()=>{
+      this.props.dispatch(fetchUser1())
+  }
+  postData12 = ()=>{
+    this.props.dispatch(fetchUser12({data:"jarvin gay"}))
+}
     createGitProjectsList = (a,b,v) => {
         //run some python code to grab projects then map to proper render es6
         let projects=[{name:"project1",description:"helelelele",link:"dadada",demo:"dsdsd"},{name:"project2",description:"ddddd",link:"aaaaa",demo:"11111d"}]
@@ -71,6 +79,13 @@ class GitProjects extends Component {
         <IntlProvider locale="en">
     <div className="projects-tabs">
         <Button colored onClick={this.postData}> run python </Button>
+        <Button colored onClick={this.postData1}> rasasdhon </Button>
+        <Button colored onClick={this.postData12}> rasasdhon </Button>
+        <pre>
+ {
+  JSON.stringify(this.props)
+ }
+</pre>
          {listGitProjects}
     </div>
     </IntlProvider>
@@ -80,17 +95,11 @@ class GitProjects extends Component {
 
 //export default GitProjects;
 const WrappedGitProjects = Form.create({})(GitProjects);
-
-function mapStateToProps(state) {
-    let ret = {
-        
-    };
-    return ret;
-}
-
+const mapStateToProps = state => ({
+  ...state
+ })
 WrappedGitProjects.propTypes = {
     dispatch: PropTypes.func.isRequired,
-    
 };
 
 WrappedGitProjects.contextTypes = {
