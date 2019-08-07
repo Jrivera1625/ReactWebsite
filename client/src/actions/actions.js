@@ -1,19 +1,42 @@
 
 import callApi from './apiCaller.js'
-export const ADD_USER = 'ADD_USER'; // action types
 
-export function getUserData(data) {
-   return {
-      type: ADD_USER,
-      userData: data
-   }
-}
+export const simpleAction = (data) => dispatch => {
+   dispatch({
+    type: 'SIMPLE_ACTION',
+    payload: data
+   })
+  }
+  export const simpleAction1 = (data) => dispatch => {
+   dispatch({
+    type: 'SIMPLE_ACTION1',
+    payload: 'other stuff'
+   })
+  }
 export function fetchUser(data) {
   return (dispatch) =>
      {     
       return callApi('backend_call','post',data).then(res=>{
-         console.log("action message", res)
-         dispatch(getUserData(res.data))
+         
+         dispatch(simpleAction(res.data))
       });
      }
 }
+export function fetchUser1(data) {
+   return (dispatch) =>
+      {     
+       return callApi('backend_call','post',data).then(res=>{
+          dispatch(simpleAction1(res.data))
+          
+       });
+      }
+ }
+ export function fetchUser12(data) {
+   return (dispatch) =>
+      {     
+       return callApi('backend_call_12','post',data).then(res=>{
+          dispatch(simpleAction1(res.data))
+          
+       });
+      }
+ }
