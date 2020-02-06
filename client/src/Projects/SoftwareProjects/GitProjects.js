@@ -38,7 +38,7 @@ class GitProjects extends Component {
       this.props.dispatch(fetchUser1())
   }
   postData12 = ()=>{
-    this.props.dispatch(fetchUser12({data:"jarvin gay"}))
+    this.props.dispatch(fetchUser12({data:"jarvin"}))
 }
     createGitProjectsList = (a,b,v) => {
         //run some python code to grab projects then map to proper render es6
