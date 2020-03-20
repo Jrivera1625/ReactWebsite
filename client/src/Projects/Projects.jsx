@@ -25,9 +25,9 @@ class Projects extends Component {
   }
   toggleCategories() {
     if (this.state.activeTab === 0) {
-      return  <SoftwareProjects/>;
-      }else if (this.state.activeTab === 1) {
-      return <ElectricalProjects/>;
+      return <SoftwareProjects />;
+    } else if (this.state.activeTab === 1) {
+      return <ElectricalProjects />;
     }
   }
   render() {
