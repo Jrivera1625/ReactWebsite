@@ -21,7 +21,7 @@ import {
 import { Form } from 'antd'
 
 //import actions 
-import { fetchUser, fetchUser1, fetchUser12 } from '../../actions/actions';
+import { fetchGitUserData } from '../../actions/actions';
 
 //import reducers/selectors
 import getUserData from '../../reducers/reducers'
@@ -40,56 +40,96 @@ class GitProjects extends Component {
   postData12 = () => {
     this.props.dispatch(fetchUser12({ data: "jarvin" }))
   }
+  renderGitData = () => {
+    this.props.dispatch(fetchGitUserData())
+  }
   createGitProjectsList = (a, b, v) => {
-    //run some python code to grab projects then map to proper render es6
-    let projects = [{ name: "project1", description: "Description", link: "dadada", demo: "dsdsd" }, { name: "project2", description: "Description", link: "aaaaa", demo: "11111d" }];
-    let es6 = [];
-    for (var i = 0; i < projects.length; i++) {
-      es6.push(
-        <Card shadow={5} style={{ minWidth: "450", margin: "auto" }}>
-          <CardTitle
-            style={{
-              color: "#fff",
-              height: "176px",
-              background:
-                "url(http://media02.hongkiat.com/thumbs/250x160/react-js-web-developers-toolkit.jpg) center /cover"
+    var gitDataPull = a.gitData;
+    if (gitDataPull != undefined) {
+      var gitProjectsArr = JSON.parse(gitDataPull);
+      let CardComponentArr = [];
+      for (var i = 0; i < gitProjectsArr.length; i++) {
+        CardComponentArr.push(
+          <Card shadow={5} style={{ minWidth: "450", margin: "auto" }}>
+            <CardTitle
+              style={{
+                color: "#fff",
+                height: "176px",
+                background:
+                  "url(http://media02.hongkiat.com/thumbs/250x160/react-js-web-developers-toolkit.jpg) center /cover"
 
-            }}
-          >
-            {projects[i].name}
-          </CardTitle>
-          <CardText>{projects[i].description}</CardText>
-          <CardActions border>
-            <Button colored> {projects[i].link} </Button>
-            <Button colored> Documentation </Button>
-            <Button colored> Demo </Button>
-          </CardActions>
-          <CardMenu style={{ color: "#fff" }}>
-            <IconButton name="share" />
-          </CardMenu>
-        </Card>
-      );
+              }}
+            >
+              {gitProjectsArr[i].name}
+            </CardTitle>
+            <CardText>{gitProjectsArr[i].description}</CardText>
+            <CardText>{gitProjectsArr[i].language}</CardText>
+            <CardActions border>
+              <Button colored>  {gitProjectsArr[i].svn_url} </Button>
+              <Button colored>  {gitProjectsArr[i].language} </Button>
+
+            </CardActions>
+            <CardMenu style={{ color: "#fff" }}>
+              <IconButton name="share" />
+            </CardMenu>
+          </Card>
+
+        );
+
+
+
+      }
+      return CardComponentArr;
 
     }
-    return es6
+    else {
+      return (
+        <div>
+          Component did not mount
+        </div>
+      )
+    }
+    //console.log(yen.length);
+    /* let projects = [{ name: "project1", description: "Description", link: "dadada", demo: "dsdsd" }, { name: "project2", description: "Description", link: "aaaaa", demo: "11111d" }];
+     let es6 = [];
+     for (var i = 0; i < projects.length; i++) {
+       es6.push(
+         <Card shadow={5} style={{ minWidth: "450", margin: "auto" }}>
+           <CardTitle
+             style={{
+               color: "#fff",
+               height: "176px",
+               background:
+                 "url(http://media02.hongkiat.com/thumbs/250x160/react-js-web-developers-toolkit.jpg) center /cover"
+ 
+             }}
+           >
+             {projects[i].name}
+           </CardTitle>
+           <CardText>{projects[i].description}</CardText>
+           <CardActions border>
+             <Button colored> {projects[i].link} </Button>
+             <Button colored> Documentation </Button>
+             <Button colored> Demo </Button>
+           </CardActions>
+           <CardMenu style={{ color: "#fff" }}>
+             <IconButton name="share" />
+           </CardMenu>
+         </Card>
+       );
+ 
+     } */
+    // return es6
   }
 
 
   render() {
-    let listGitProjects = this.createGitProjectsList(1, 3, 4)
+    let listGitProjects = this.createGitProjectsList(this.props.gitData, 3, 4)
     return (
       <IntlProvider locale="en">
         <div className="projects-tabs">
           {listGitProjects}
-          
-          <Button colored onClick={this.postData}> run python </Button>
-          <Button colored onClick={this.postData1}> rasasdhon </Button>
-          <Button colored onClick={this.postData12}> rasasdhon </Button>
-          <pre>
-            {
-              JSON.stringify(this.props)
-            }
-          </pre>
+          <Button colored onClick={this.renderGitData}> FetchGitData </Button>
 
         </div>
       </IntlProvider>
@@ -99,9 +139,12 @@ class GitProjects extends Component {
 
 //export default GitProjects;
 const WrappedGitProjects = Form.create({})(GitProjects);
-const mapStateToProps = state => ({
-  ...state
-})
+const mapStateToProps = state => {
+  return {
+    gitData: state.gitReducer
+  }
+
+}
 WrappedGitProjects.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };

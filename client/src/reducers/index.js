@@ -33,7 +33,7 @@ export default combineReducers({
 
 // export default rootReducer;
 import { combineReducers } from 'redux';
-import {simpleAction, simpleAction1} from './reducers';
+import {simpleAction, simpleAction1,gitReducer} from './reducers';
 export default combineReducers({
-  simpleAction,simpleAction1
+  simpleAction,simpleAction1,gitReducer
 });

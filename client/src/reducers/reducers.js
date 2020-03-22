@@ -19,4 +19,14 @@ export const simpleAction =(state = {}, action) => {
     return state
   }
  }
+ export const gitReducer =(state = {}, action) => {
+  switch (action.type) {
+   case 'GIT_ACTION':
+    return {
+     gitData: action.payload
+    }
+   default:
+    return state
+  }
+ }
  //export 
