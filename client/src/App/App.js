@@ -8,7 +8,7 @@ import Projects from "../Projects/Projects";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Layout, Header, Navigation, Drawer, Content } from "react-mdl";
 import Main from "../Main";
-import styles from "./App.css";
+import styles from "./App.scss";
 
 class App extends Component {
   constructor(props) {

@@ -26,9 +26,17 @@ class SoftwareProjects extends Component {
       toggleCategories() {
         if (this.state.activeTab === 0) {
           return (
-            <div className>
-            Anyother type of projects???
-            </div>
+            
+              <Grid>
+                 <Cell col={6}>
+              <div className = "jumbo">
+              <div class="spinner-border">
+                <span class="sr-only">Loading...</span>
+              </div>
+              </div>
+              </Cell>
+              </Grid>
+           
           );
         } else if (this.state.activeTab === 1) {
           return (
@@ -50,11 +58,11 @@ class SoftwareProjects extends Component {
       <Tab> Git Projects</Tab>
     </Tabs>
 
-    <Grid>
-      <Cell col={15}>
+    
+    
         <div className="content"> {this.toggleCategories()}</div>
-      </Cell>
-    </Grid>
+     
+    
   </div>;
   }
 }

@@ -21,7 +21,7 @@ class WindTurbine extends Component {
   render() {
     return(
 
-<div className = "deeznuts">
+<div className = "jumbo">
 <Jumbotron fluid className="jumbotron1">
   <Container>
     <h1>Fluid jumbotron</h1>
