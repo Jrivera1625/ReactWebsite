@@ -16,13 +16,18 @@ import {
 import Resume from "../Resume";
 import ElectricalProjects from "./ElectricalProjects/ElectricalProjects";
 import SoftwareProjects from "./SoftwareProjects/SoftwareProjects";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import SplitButton from 'react-bootstrap/SplitButton';
 
 
 class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = { activeTab: 0 };
+    
   }
+  
   toggleCategories() {
     if (this.state.activeTab === 0) {
       return <SoftwareProjects />;
@@ -30,7 +35,9 @@ class Projects extends Component {
       return <ElectricalProjects />;
     }
   }
+
   render() {
+  
     return (
       <div className="category-tabs">
         <Tabs
@@ -38,13 +45,14 @@ class Projects extends Component {
           onChange={tabId => this.setState({ activeTab: tabId })}
           ripple
         >
-          <Tab> Software</Tab>
-          <Tab> Electrical </Tab>
-        </Tabs>
+          <Tab style={{fontWeight: this.state.activeTab == 0? "bold": "normal" }}>Software </Tab>
+          <Tab style={{fontWeight: this.state.activeTab == 1? "bold": "normal" }}> Electrical </Tab>
+        </Tabs> 
+
 
         <Grid>
           <Cell col={12}>
-            <div className="content"> {this.toggleCategories()}</div>
+          <div className="content"> {this.toggleCategories()}</div> 
           </Cell>
         </Grid>
       </div>

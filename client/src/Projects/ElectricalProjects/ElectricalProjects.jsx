@@ -44,16 +44,15 @@ class ElectricalProjects extends Component {
       activeTab={this.state.activeTab}
       onChange={tabId => this.setState({ activeTab: tabId })}
       ripple
-    >
-      <Tab> Robot </Tab>
-      <Tab> Wind Turbine </Tab>
+    > 
+      <Tab  style={{fontSize:"11px"}}> Robot</Tab>
+      <Tab  style={{fontSize:"11px"}}> Maximum Power tracking wind turbine</Tab>
     </Tabs>
 
-    <Grid>
-      <Cell col={15}>
-        <div className="content"> {this.toggleCategories()}</div>
-      </Cell>
-    </Grid>
+
+   <div className="content"> {this.toggleCategories()}</div>
+      
+    
   </div>;
   }
 }

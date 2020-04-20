@@ -54,8 +54,8 @@ class SoftwareProjects extends Component {
       onChange={tabId => this.setState({ activeTab: tabId })}
       ripple
     >
-      <Tab> Random software Projects</Tab>
-      <Tab> Git Projects</Tab>
+      <Tab  style={{fontSize:"11px"}}> Software Projects</Tab>
+      <Tab  style={{fontSize:"11px"}}> Github Projects</Tab>
     </Tabs>
 
     
