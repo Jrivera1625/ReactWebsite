@@ -156,6 +156,15 @@
 
  
 }
+.wrapper2 {
+  display: flex;
+  justify-content: flex-start;
+  overflow: auto;
+  flex-grow: 1;
+
+
+}
+
 
 .loading_grid {
   text-align: center;

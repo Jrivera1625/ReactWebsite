@@ -22,6 +22,8 @@ import { Form } from 'antd'
 import Carousel from 'react-bootstrap/Carousel';
 //import actions 
 import { fetchGitUserData } from '../../actions/actions';
+import { Menu, Dropdown, Breadcrumb } from 'antd';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 
 //import reducers/selectors
 import getUserData from '../../reducers/reducers'
@@ -55,91 +57,96 @@ class GitProjects extends Component {
     if (gitDataPull != undefined) {
       var gitProjectsArr = JSON.parse(gitDataPull);
       let CardComponentArr = [];
-   /*    for (var i = 0; i < gitProjectsArr.length; i++) {
-         CardComponentArr.push(
-        
-           <Card shadow={5} style={{ minWidth: "450", margin: "auto" }}>
-             <CardTitle
-               style={{
-                 color: "#fff",
-                 height: "176px",
-                 background:
-                   "url(http://media02.hongkiat.com/thumbs/250x160/react-js-web-developers-toolkit.jpg) center /cover"
- 
-               }}
-             >
-               {gitProjectsArr[i].name}
-             </CardTitle>
-             <CardText>{gitProjectsArr[i].description}</CardText>
-             <CardText>{gitProjectsArr[i].language}</CardText>
-             <CardActions border>
-               <Button colored>  {gitProjectsArr[i].svn_url} </Button>
-               <Button colored>  {gitProjectsArr[i].language} </Button>
- 
-             </CardActions>
-             <CardMenu style={{ color: "#fff" }}>
-               <IconButton name="share" />
-             </CardMenu>
-           </Card> 
-          
-          
-            
-          
-         ); */
-     var displayProjects = gitProjectsArr.map((GitProject, index) =>{
-       return(
-        
-         <div key={GitProject.name + index} style = {{margin:"10px"}}>
+      /*    for (var i = 0; i < gitProjectsArr.length; i++) {
+            CardComponentArr.push(
+           
+              <Card shadow={5} style={{ minWidth: "450", margin: "auto" }}>
+                <CardTitle
+                  style={{
+                    color: "#fff",
+                    height: "176px",
+                    background:
+                      "url(http://media02.hongkiat.com/thumbs/250x160/react-js-web-developers-toolkit.jpg) center /cover"
+    
+                  }}
+                >
+                  {gitProjectsArr[i].name}
+                </CardTitle>
+                <CardText>{gitProjectsArr[i].description}</CardText>
+                <CardText>{gitProjectsArr[i].language}</CardText>
+                <CardActions border>
+                  <Button colored>  {gitProjectsArr[i].svn_url} </Button>
+                  <Button colored>  {gitProjectsArr[i].language} </Button>
+    
+                </CardActions>
+                <CardMenu style={{ color: "#fff" }}>
+                  <IconButton name="share" />
+                </CardMenu>
+              </Card> 
+             
+             
+               
+             
+            ); */
+      var displayProjects = gitProjectsArr.map((GitProject, index) => {
+        return (
 
-         <div class="clash-card barbarian">
-     
-      <div class="clash-card__level clash-card__level--barbarian">Level 4</div>
-      <div class="clash-card__unit-name">The Barbarian</div>
-      <div class="clash-card__unit-description">
-        The Barbarian is a kilt-clad Scottish warrior with an angry, battle-ready expression, hungry for destruction. He has Killer yellow horseshoe mustache.
+          <div key={GitProject.name + index} style={{ margin: "10px" }}>
+
+            <div class="clash-card barbarian">
+
+              <div class="clash-card__level clash-card__level--barbarian">Level 4</div>
+              <div class="clash-card__unit-name">The Barbarian</div>
+              <div class="clash-card__unit-description">
+                The Barbarian is a kilt-clad Scottish warrior with an angry, battle-ready expression, hungry for destruction. He has Killer yellow horseshoe mustache.
       </div>
 
-      <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
-        <div class="one-third">
-          <div class="stat">20<sup>S</sup></div>
-          <div class="stat-value">Training</div>
-        </div>
+              <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                <div class="one-third">
+                  <div class="stat">20<sup>S</sup></div>
+                  <div class="stat-value">Training</div>
+                </div>
 
-        <div class="one-third">
-          <div class="stat">16</div>
-          <div class="stat-value">Speed</div>
-        </div>
+                <div class="one-third">
+                  <div class="stat">16</div>
+                  <div class="stat-value">Speed</div>
+                </div>
 
 
-      </div>
+              </div>
 
-       </div> 
-         </div>
-      
-      
+            </div>
+          </div>
+
+
+        )
+
+      }
       )
-        
-       }
-      ) 
     }
     return displayProjects
-   // return CardComponentArr;
+    // return CardComponentArr;
 
 
   }
 
 
 
-  wait = async (milliseconds = 2000) => {
+  wait = async (milliseconds = 5000) => {
     await this.sleep(milliseconds);
     this.setState({
       isLoaded: false
     });
+
   };
 
   componentDidMount() {
-    this.wait(2000);
-    this.renderGitData();
+    let mounted = true;
+    if (mounted) {
+      this.wait(2000);
+      this.renderGitData();
+    }
+    return () => mounted = false;
 
   }
 
@@ -148,25 +155,30 @@ class GitProjects extends Component {
     // this.renderGitData();
     if (this.state.isLoaded) {
       return (
-        <Grid>
-           <Cell col={6}>
-        <div className = "jumbo">
-        <div class="spinner-border">
-          <span class="sr-only">Loading...</span>
+        <div>
+          <div className="wrapper" style={{ width: "100%", height: "100%", textAlign: "center", padding: 0, margin: 0 }}>
+            <div class="spinner-border">
+            </div>
+
+
+          </div>
+          <div className="wrapper" style={{ margin: 0, textAlign: "center", padding: 0 }}>
+            <span>Fetching Data...</span>
+          </div>
         </div>
-        </div>
-        </Cell>
-        </Grid>
+
       );
     } else {
 
       return (
-         <IntlProvider>
-          <div className="wrapper">
-            {listGitProjects}
-          </div>
-         </IntlProvider>
-       
+        <div>
+          <IntlProvider>
+            <div className="wrapper">
+              {listGitProjects}
+            </div>
+          </IntlProvider>
+        </div>
+
       );
     }
   }
